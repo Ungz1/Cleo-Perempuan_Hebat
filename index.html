@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terima Kasih</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { darkbg: '#0f0f11', muted: '#a1a1aa' },
+                    fontFamily: { serif: ['"Lora"', 'serif'], sans: ['"Inter"', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+    <style>
+        body { background-color: #0f0f11; color: #e4e4e7; overflow-x: hidden; }
+        .particles {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: -1;
+            background: transparent url('https://www.transparenttextures.com/patterns/stardust.png') repeat;
+            animation: drift 100s linear infinite; opacity: 0.3;
+        }
+        @keyframes drift { 0% { background-position: 0% 0%; } 100% { background-position: 100% 100%; } }
+        .glass-card { background: rgba(30, 30, 35, 0.4); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.05); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); }
+        .glow-btn:hover { box-shadow: 0 0 20px rgba(255, 255, 255, 0.15); transform: translateY(-2px); }
+        ::-webkit-scrollbar { width: 6px; } ::-webkit-scrollbar-track { background: #0f0f11; }
+        ::-webkit-scrollbar-thumb { background: #3f3f46; border-radius: 10px; }
+        #loader { transition: opacity 1s ease-out; }
+    </style>
+</head>
+<body class="font-sans pb-20 relative">
+
+    <div id="loader" class="fixed inset-0 bg-[#0f0f11] z-50 flex items-center justify-center">
+        <h1 class="font-serif italic text-muted text-2xl md:text-3xl animate-pulse">Untuk Terakhir Kalinya...</h1>
+    </div>
+
+    <div class="particles"></div>
+    
+    <audio id="bg-music" loop>
+        <source src="Music.mp3" type="audio/mpeg">
+    </audio>
+
+    <section class="min-h-screen flex flex-col items-center justify-center text-center px-6 relative gsap-fade">
+        <h1 class="font-serif text-4xl md:text-5xl lg:text-6xl text-white leading-tight max-w-3xl mb-6">
+            Terima Kasih Buat Semuanya.
+        </h1>
+        
+        <p class="text-base md:text-lg text-zinc-400 font-light mb-12 max-w-2xl leading-relaxed">
+            Sebuah Pesan dan Rasa Terima Kasih. 
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-4">
+            <a href="#message" class="glow-btn bg-zinc-200 text-black px-8 py-3 rounded-full font-medium tracking-wide hover:bg-white transition">Baca Pesan</a>
+            <button id="play-music-btn" class="border border-zinc-600 text-zinc-300 px-8 py-3 rounded-full font-medium tracking-wide hover:bg-zinc-800 transition">Putar Lagu</button>
+        </div>
+    </section>
+
+    <section id="message" class="py-20 px-6 max-w-3xl mx-auto gsap-slide-up">
+        <div class="glass-card p-8 md:p-12 rounded-2xl relative">
+            <h2 class="font-serif text-2xl text-white mb-8 text-center opacity-80">Pesan Buat Cleo Hebat</h2>
+            
+            <p class="w-full text-zinc-300 text-lg md:text-xl font-light leading-relaxed text-justify ">
+                "Halooo Cleooo, rencana i sebenernya tuh i pengen buat web buat u tentang apresiasi u buat semua usaha dan waktu yang udah cleo korbanin buat utbk ini, apalagi Cleo sambil kerja. Cleo tuh bener-bener perempuan paling kuat yang pernah i kenal.<br><br>Waktu masih jadi pacar u, i bener-bener bangga banget sama Cleo, i selalu bangga-banggain u ke temen-temen i wkwkwk. Apapun itu hasil UTBK yang Cleo lakuin, Cleo jangan lupa berterima kasih ke diri sendiri yaaah, karena cleo sudah berusaha sekuat yang Cleo bisa.<br><br>Pesan buat Cleo, semangat teruuus buat kerja dan kuliah nanti yaaaah. Jangan lupa setiap lakuin sesuatuu baca bismillah dulu yaah, sama alhamdulillahnya jangan lupa. Faiz disini selalu doain yang terbaik buat Cleo, semoga semua usaha dan kerja keras Cleo selama ini dibales sama hasil yang memuaskan, Aamiiin.<br><br>Jaga kesehatan yaaah, jangan lupa makan sebelum kerja, istirahat yang cukup, jangan terlalu keras sama diri sendiri yaaaah. Semoga semua impian dan cita-cita Cleo tercapaaai semuanyaaa, Cleo bahagia yaaaaah."
+            </p>
+        </div>
+    </section>
+
+    <section class="py-32 flex flex-col items-center justify-center gsap-fade">
+        <div id="interactive-box" class="cursor-pointer group relative p-10">
+            <p id="box-text" class="font-serif text-xl text-zinc-500 group-hover:text-white transition-colors duration-500 italic text-center">
+                "Tebak apa inii."
+            </p>
+            <p class="text-[10px] text-zinc-600 uppercase tracking-widest text-center mt-6">Sentuh tulisan di atas</p>
+        </div>
+    </section>
+
+    <section class="py-20 px-6 max-w-md mx-auto text-center gsap-slide-up">
+        <div class="glass-card p-8 rounded-xl border border-zinc-800/50">
+            <h3 class="font-sans font-medium text-sm text-zinc-400 mb-6 uppercase tracking-wider">Apa hayo ini</h3>
+            
+            <input type="text" id="secret-input" data-target="cleo" placeholder="Masukkan nama..." class="w-full bg-transparent border-b border-zinc-700 p-2 text-center text-white focus:outline-none focus:border-zinc-400 transition mb-4">
+            
+            <div id="secret-reveal" class="hidden text-zinc-300 font-serif text-lg italic mt-6 opacity-0 transition-opacity duration-1000">
+                "I bakal terus sayaaang banget sama Cleo ga tau sampai kapan, i ga bakal kemana mana yaaah"
+            </div>
+        </div>
+    </section>
+
+    <section id="final-letter" class="py-24 px-6 max-w-2xl mx-auto text-center gsap-fade">
+        <h2 class="font-serif text-3xl text-white mb-8">Terakhir</h2>
+        
+        <p class="text-zinc-400 font-light leading-relaxed mb-12 text-lg">
+            Terima kasih banyak udah mau jadi pasangan buat Faiz, temen buat Faiz, dan perempuan yang selalu dukung Faiz,
+            mungkin Cleo jadi ga ada rasa karna i juga, maaf yaah i blom bisa jadi yang tebaik buat Cleo, blom bisa jadi yang di banggakan sama Cleo,
+            i minta maaf banget mungkin cleo waktu sama i kita blom bisa explore banyak hal, semoga kita berdua bisa menjadi yang lebih baik dari yang sebelumnya,
+            i ga tau mo bilang apa lagi, sekali lagi i berterima kasih banyak buat semuanya dan i minta maaf juga buat semuanyaaa, Faiz sayaaaang Cleo banyak banyaak, 
+            Babaiii Perempuan paling hebat yang pernah i kenal🤍🤍🤍🤍.
+        </p>
+    </section>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // Loader Animation
+            setTimeout(() => {
+                document.getElementById('loader').style.opacity = '0';
+                setTimeout(() => {
+                    document.getElementById('loader').style.display = 'none';
+                    gsap.from(".gsap-fade", { opacity: 0, y: 20, duration: 1.5, stagger: 0.2 });
+                    gsap.from(".gsap-slide-up", { scrollTrigger: ".gsap-slide-up", opacity: 0, y: 40, duration: 1 });
+                }, 1000);
+            }, 1500);
+
+            // Interactive Box
+            const box = document.getElementById('interactive-box');
+            const boxText = document.getElementById('box-text');
+            box.addEventListener('click', () => {
+                gsap.to(boxText, { opacity: 0, y: -10, duration: 0.3, onComplete: () => {
+                    boxText.innerHTML = "Terima kasih sudah jadi bagian dari ceritaku.";
+                    boxText.classList.replace('text-zinc-500', 'text-white');
+                    gsap.to(boxText, { opacity: 1, y: 0, duration: 0.5 });
+                }});
+            });
+
+            // Secret Password
+            const secretInput = document.getElementById('secret-input');
+            const secretReveal = document.getElementById('secret-reveal');
+            const targetName = secretInput.getAttribute('data-target');
+
+            secretInput.addEventListener('input', (e) => {
+                if (e.target.value.toLowerCase() === targetName.toLowerCase()) {
+                    secretReveal.classList.remove('hidden');
+                    setTimeout(() => secretReveal.style.opacity = '1', 50);
+                } else {
+                    secretReveal.style.opacity = '0';
+                    setTimeout(() => secretReveal.classList.add('hidden'), 300);
+                }
+            });
+
+            // Music Logic
+            const bgMusic = document.getElementById('bg-music');
+            let isPlaying = false;
+
+            const playMusic = () => {
+                bgMusic.play().then(() => {
+                    isPlaying = true;
+                    document.getElementById('play-music-btn').innerText = "Jeda Lagu ⏸️";
+                }).catch(error => {
+                    console.log("Browser membutuhkan klik user untuk memutar lagu.");
+                });
+            };
+
+            document.getElementById('play-music-btn').addEventListener('click', (e) => {
+                if (isPlaying) {
+                    bgMusic.pause();
+                    e.target.innerText = "Putar Lagu 🎵";
+                    isPlaying = false;
+                } else {
+                    playMusic();
+                }
+            });
+
+            // Auto-loop failsafe
+            bgMusic.addEventListener('ended', function() {
+                this.currentTime = 0;
+                this.play();
+            }, false);
+
+            // Export PDF
+            document.getElementById('pdf-btn').addEventListener('click', () => {
+                const element = document.getElementById('final-letter');
+                html2pdf().from(element).set({
+                    margin: 1, filename: 'Ucapan_Terima_Kasih.pdf',
+                    html2canvas: { scale: 2 }, jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+                }).save();
+            });
+
+            // Send to WA
+            document.getElementById('wa-btn').addEventListener('click', () => {
+                const noHP = "628xxxxxxxxxx"; // Ganti dengan nomormu
+                const text = encodeURIComponent(`Halo, aku udah baca pesan kamu...`);
+                window.open(`https://wa.me/${noHP}?text=${text}`, '_blank');
+            });
+        });
+    </script>
+</body>
+</html>
