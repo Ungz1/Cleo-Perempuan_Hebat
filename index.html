@@ -91,7 +91,8 @@
             <input type="text" id="secret-input" data-target="cleo" placeholder="Masukkan nama..." class="w-full bg-transparent border-b border-zinc-700 p-2 text-center text-white focus:outline-none focus:border-zinc-400 transition mb-4">
             
             <div id="secret-reveal" class="hidden text-zinc-300 font-serif text-lg italic mt-6 opacity-0 transition-opacity duration-1000">
-                "I bakal terus sayaaang banget sama Cleo ga tau sampai kapan, i ga bakal kemana mana yaaah"
+                "
+                Terima kasih sudah jadi bagian dari ceritaku."
             </div>
         </div>
     </section>
@@ -125,7 +126,7 @@
             const boxText = document.getElementById('box-text');
             box.addEventListener('click', () => {
                 gsap.to(boxText, { opacity: 0, y: -10, duration: 0.3, onComplete: () => {
-                    boxText.innerHTML = "Terima kasih sudah jadi bagian dari ceritaku.";
+                    boxText.innerHTML = "I bakal terus sayaaang banget sama Cleo ga tau sampai kapan, i ga bakal kemana mana yaaah.";
                     boxText.classList.replace('text-zinc-500', 'text-white');
                     gsap.to(boxText, { opacity: 1, y: 0, duration: 0.5 });
                 }});
